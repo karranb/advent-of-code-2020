@@ -1013,10 +1013,13 @@ part1_documents = filter(document_has_fields, documents)
 
 print("part1", len(part1_documents))
 
+
 def validate_height(v):
     n = 0
     try:
-        n = int(v.replace("in", '').replace("cm", '')) # can lead to an error 70cmin / 70incm would be valid
+        n = int(
+            v.replace("in", "").replace("cm", "")
+        )  # can lead to an error 70cmin / 70incm would be valid
     except:
         return False
     if "in" in v:
@@ -1060,7 +1063,9 @@ def validate_eye_color(v):
 
 
 def validate_pid(v):
-    return len(v) ==9 and all(char in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"] for char in v)
+    return len(v) == 9 and all(
+        char in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"] for char in v
+    )
 
 
 validations = {
@@ -1071,7 +1076,7 @@ validations = {
     "hcl": validate_color,
     "ecl": validate_eye_color,
     "pid": validate_pid,
-    "cid": lambda x: True
+    "cid": lambda x: True,
 }
 
 
@@ -1082,6 +1087,7 @@ def document_has_valid_fields(document):
         if not validations[id](value):
             return False
     return True
+
 
 print("part2", len(filter(document_has_valid_fields, part1_documents)))
 
