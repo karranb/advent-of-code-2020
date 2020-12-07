@@ -910,10 +910,11 @@ FBBBBBFRRL"""
 rows_n = 128
 columns_n = 8
 
-front = 'F'
-back = 'B'
-left = 'L'
-right = 'R'
+front = "F"
+back = "B"
+left = "L"
+right = "R"
+
 
 def get_row(instructions):
     rows = range(rows_n)
@@ -925,6 +926,7 @@ def get_row(instructions):
             rows = rows[:slice_size]
         if len(rows) == 1:
             return rows[0]
+
 
 def get_column(instructions):
     columns = range(columns_n)
@@ -948,9 +950,9 @@ def get_seat_id(instructions):
     return calc_seat_id(row, column)
 
 
-seat_ids = list(map(get_seat_id, input.split('\n')))
+seat_ids = list(map(get_seat_id, input.split("\n")))
 seat_ids.sort(reverse=True)
-print('part 1', seat_ids[0])
+print("part 1", seat_ids[0])
 
 all_rows = range(rows_n)
 all_columns = range(columns_n)
@@ -963,5 +965,8 @@ for row in all_rows:
     for column in all_columns:
         every_seat_ids += [calc_seat_id(row, column)]
 
-free_seat = list(filter(lambda x: x not in seat_ids and 50 < x < 900, every_seat_ids))[0]
-print('part 2', free_seat)
+free_seat = list(filter(lambda x: x not in seat_ids and 50 < x < 900, every_seat_ids))[
+    0
+]
+print("part 2", free_seat)
+
