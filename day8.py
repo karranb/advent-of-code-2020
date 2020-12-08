@@ -648,9 +648,10 @@ jmp +1"""
 
 instructions = map(lambda x: x.split(" "), input.split("\n"))
 
-JUMP = 'jmp'
-ACC = 'acc'
-NOOP = 'noop'
+JUMP = "jmp"
+ACC = "acc"
+NOOP = "noop"
+
 
 def execute_program(given_instructions):
     index = {}
@@ -670,7 +671,9 @@ def execute_program(given_instructions):
         current_index += 1
     return True, acc
 
-print('part 1', execute_program(instructions)[1])
+
+print("part 1", execute_program(instructions)[1])
+
 
 def do_next_change(_changed_instructions, _instructions):
     any_change = False
@@ -691,6 +694,7 @@ def do_next_change(_changed_instructions, _instructions):
         new_instructions += [(JUMP, instruction[1])]
     return changed_instructions, new_instructions
 
+
 changed_instructions = []
 current_instructions = instructions
 acc = -1
@@ -701,6 +705,9 @@ while True:
     finished, acc = execute_program(current_instructions)
     if finished:
         break
-    changed_instructions, current_instructions = do_next_change(changed_instructions, instructions)
+    changed_instructions, current_instructions = do_next_change(
+        changed_instructions, instructions
+    )
     i += 1
-print('part 2', acc)
+print("part 2", acc)
+
